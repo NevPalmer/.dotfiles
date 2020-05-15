@@ -1,0 +1,23 @@
+# Bash shell aliases and functions
+
+alias gvim='. ~/.bash/gvim.bash'
+
+# The following provides a 'cd' command history
+function cd() { 
+  if [ $# -eq 0 ]; then
+    DIR="${HOME}"
+  else
+    DIR="$1"
+  fi
+  pushd "${DIR}" > /dev/null;
+}
+alias b="pushd +1 > /dev/null" #cd back to prev dir
+alias f="pushd -0 > /dev/null" #cd forward to next dir
+alias s="pushd > /dev/null" #cd switch between 2 latest dirs
+alias dirs="dirs -v"
+
+alias ll='ls -l'
+alias la='ls -A'
+alias lld='ll | grep "^d"'
+function lt() { ls -lrt $@ | tail -12 ;}
+function llt() { ls -lrt $@ | tail -24 ;}

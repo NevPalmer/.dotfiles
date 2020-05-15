@@ -1,0 +1,62 @@
+## This file .bashrc config specific to GNS bash users.
+
+## Look at the setlogin.sh file if you want to see what the default GNS
+## environment is set to. Some variables useful for testing are set there.
+
+if [ ! "$LOGINENVSET" ]; then
+
+  if [ -f /opt/gns/etc/setlogin.sh ]; then
+    . /opt/gns/etc/setlogin.sh
+  fi
+
+## User specific environment and startup programs
+## Put additions to the PATH and any of your own environment settings that
+## you want defined once only here in this section
+
+  PATH=$PATH:$HOME/bin:$HOME/scripts:~gps/bin:~gps/sbin:~beavan/sbin:~beavan/bin
+  PATH=$PATH:/home/sigrun/bin:/home/sigrun/bin/goa:/home/sigrun/shellscripts:/home/sigrun/tsview/tsview:/home/sigrun/QOCA/qoca_64:/home/sigrun/gamit/com:/home/sigrun/gamit/gamit/bin:/home/sigrun/gamit/kf/bin
+  PATH="/home/nevillep/miniconda3/bin:$PATH"
+  PATH=.:$PATH
+  export PATH
+  export HELP_DIR="/home/sigrun/gamit/help/"
+
+  LOGINENVSET=TRUE
+  export LOGINENVSET
+fi
+
+## The GNS aliases and functions
+if [ -f /opt/gns/etc/setalias.sh ]; then
+        . /opt/gns/etc/setalias.sh
+fi
+
+
+
+#       Set Gamit environment
+HELP_DIR="/home/sigrun/gamit/help/"
+helpdir=$HELP_DIR
+INSTITUTE="GNS"
+institute=$INSTITUTE
+ARCH="Linux86-64"
+GLOBK="/home/sigrun/GLOBK"
+globk=$GLOBK
+GLX="/home/sigrun/GLX"
+glx=$GLX
+SCRATCH="/tmp"
+scratch=$SCRATCH
+DATA="/home/sigrun/RAWDATA/DATA"
+data=$DATA
+CAMP="/home/sigrun/DATABASE/CAMP"
+camp=$CAMP
+INFO="/home/sigrun/DATABASE/GAMIT"
+info=$INFO
+RAWDATA="/home/sigrun/RAWDATA"
+rawdata=$RAWDATA
+WEEKS="/geod/weeks"
+weeks=$WEEKS
+NAMEDIR="/home/sigrun/RAWDATA/datacenters/namefiles"
+namedir=$NAMEDIR
+
+alias python="python3"
+
+PRINTER=avgs8000; export PRINTER
+
