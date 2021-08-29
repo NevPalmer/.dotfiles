@@ -13,12 +13,11 @@ if [ ! "$LOGINENVSET" ]; then
 ## Put additions to the PATH and any of your own environment settings that
 ## you want defined once only here in this section
 
-  PATH=$PATH:$HOME/bin:$HOME/scripts:~gps/bin:~gps/sbin:~beavan/sbin:~beavan/bin
+  PATH=$PATH:$HOME/bin:$HOME/scripts:~gps/bin:~gps/sbin
+  PATH=$PATH:/home/lauraw/gamit_globk/gamit/bin:/home/lauraw/gamit_globk/kf/bin:/home/lauraw/gamit_globk/com
   PATH=$PATH:/home/sigrun/bin:/home/sigrun/bin/goa:/home/sigrun/shellscripts:/home/sigrun/tsview/tsview:/home/sigrun/QOCA/qoca_64:/home/sigrun/gamit/com:/home/sigrun/gamit/gamit/bin:/home/sigrun/gamit/kf/bin
   PATH="/home/nevillep/miniconda3/bin:$PATH"
   PATH=.:$PATH
-  export PATH
-  export HELP_DIR="/home/sigrun/gamit/help/"
 
   LOGINENVSET=TRUE
   export LOGINENVSET
@@ -28,7 +27,6 @@ fi
 if [ -f /opt/gns/etc/setalias.sh ]; then
         . /opt/gns/etc/setalias.sh
 fi
-
 
 
 #       Set Gamit environment
@@ -55,6 +53,33 @@ WEEKS="/geod/weeks"
 weeks=$WEEKS
 NAMEDIR="/home/sigrun/RAWDATA/datacenters/namefiles"
 namedir=$NAMEDIR
+
+#-------- Set GIPSYX environment --------
+export DEFAULT_GOA_VAR=/home/lauraw/goa-var
+export GIPSYX=/home/lauraw/GipsyX-1.3
+
+#only set goa-var if it hasn't already been set
+if [ -z "$GOA_VAR" ] ; then
+    export GOA_VAR=$DEFAULT_GOA_VAR
+fi
+
+#set variables needed by GipsyX derived from GipsyX location
+export GCORE=$GIPSYX
+export GCOREBUILD=$GIPSYX
+export PATH=$GIPSYX/bin:$PATH
+export GNSSTESTDATA=$GIPSYX/testData
+export GDATA=$GNSSTESTDATA/gcore
+
+#if the GipsyX install has its own MPI, use that
+if [ -d ${GIPSYX}/lib/openmpi ] ; then
+    export OPAL_PREFIX=$GIPSYX/lib/openmpi
+    export PATH=$OPAL_PREFIX/bin:$PATH
+fi
+#if not don't do anything
+
+
+
+export PATH
 
 alias python="python3"
 
