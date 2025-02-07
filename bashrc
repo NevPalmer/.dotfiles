@@ -22,12 +22,19 @@ elif [ -f /etc/bash.bashrc ]; then
     . /etc/bash.bashrc
 fi
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+set -o vi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+# verift history command before execution.
+shopt -s histverify
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -108,24 +115,18 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if [ -d "${HOME}/anaconda3" ]; then
-    CONDA_DIR="${HOME}/anaconda3"
-else
-    CONDA_DIR="${HOME}/miniconda3"
-fi
-__conda_setup="$('${CONDA_DIR}/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/nev/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "${CONDA_DIR}/etc/profile.d/conda.sh" ]; then
-        . "${CONDA_DIR}/etc/profile.d/conda.sh"
+    if [ -f "/home/nev/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/home/nev/mambaforge/etc/profile.d/conda.sh"
     else
-        export PATH="${HOME}/anaconda3/bin:$PATH"
+        export PATH="/home/nev/mambaforge/bin:$PATH"
     fi
 fi
 unset __conda_setup
-unset CONDA_DIR
 # <<< conda initialize <<<
 
-    export PATH=".:$PATH"
+    export PATH=".:$HOME/.local/bin:$PATH"
 

@@ -7,7 +7,7 @@ set nowrap
 set autoindent
 set guioptions-=tT
 set guioptions+=lr
-let mapleader = ","
+" let mapleader = ","
 
 " vim-plug initialisation
 call plug#begin('~/.vim/plugged')

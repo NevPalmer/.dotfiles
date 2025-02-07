@@ -1,7 +1,5 @@
 # Bash shell aliases and functions
 
-alias gvim='. ~/.bash/gvim.bash'
-
 # The following provides a 'cd' command history
 function cd() { 
   if [ $# -eq 0 ]; then
