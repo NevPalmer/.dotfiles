@@ -123,6 +123,16 @@ else
         . "/home/nev/mambaforge/etc/profile.d/conda.sh"
     else
         export PATH="/home/nev/mambaforge/bin:$PATH"
+=======
+__conda_setup="$('/home/nev/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nev/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/nev/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nev/miniforge3/bin:$PATH"
+>>>>>>> Stashed changes
     fi
 fi
 unset __conda_setup
@@ -130,3 +140,16 @@ unset __conda_setup
 
     export PATH=".:$HOME/.local/bin:$PATH"
 
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE='/home/nev/miniforge3/bin/mamba';
+export MAMBA_ROOT_PREFIX='/home/nev/miniforge3';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
